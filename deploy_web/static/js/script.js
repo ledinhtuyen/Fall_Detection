@@ -18,6 +18,11 @@ alertAudio.addEventListener('ended', function() {
     this.play();
 }, false);
 
+videoElement.width = window.innerWidth;
+videoElement.height = window.innerHeight;
+canvasElement.width = window.innerWidth;
+canvasElement.height = window.innerHeight;
+
 function tick() {
   var time = Date.now();
   frame++;
@@ -95,6 +100,8 @@ pose.onResults(onResults);
 const camera = new Camera(videoElement, {
     onFrame: async () => {
       await pose.send({image: videoElement});
-    }
+    },
+    width: window.innerWidth,
+    height: window.innerHeight
   });
 camera.start();
