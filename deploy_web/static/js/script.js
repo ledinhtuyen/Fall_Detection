@@ -12,6 +12,12 @@ var startTime = Date.now();
 var frame = 0;
 var isFall = false;
 
+var alertAudio = new Audio('/static/assets/alert.wav');
+alertAudio.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
 function tick() {
   var time = Date.now();
   frame++;
@@ -55,8 +61,14 @@ function onResults(results) {
         })
         .then(response => response.text())
         .then(response => {
-            if(response == 'Fall') isFall = true;
-            else isFall = false;
+            if(response == 'Fall') {
+                isFall = true;
+                alertAudio.play();
+            }
+            else {
+                isFall = false;
+                alertAudio.pause();
+            }
         }
         );
         drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, { visibilityMin: 0.65, color: 'white' });
