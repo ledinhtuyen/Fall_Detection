@@ -19,9 +19,21 @@ alertAudio.addEventListener('ended', function() {
 }, false);
 
 videoElement.width = window.innerWidth;
-videoElement.height = window.innerHeight;
 canvasElement.width = window.innerWidth;
-canvasElement.height = window.innerHeight;
+if (navigator.userAgent.match(/Android/i)
+         || navigator.userAgent.match(/webOS/i)
+         || navigator.userAgent.match(/iPhone/i)
+         || navigator.userAgent.match(/iPad/i)
+         || navigator.userAgent.match(/iPod/i)
+         || navigator.userAgent.match(/BlackBerry/i)
+         || navigator.userAgent.match(/Windows Phone/i)) {
+            videoElement.height = window.innerWidth;
+            canvasElement.height = window.innerWidth;
+}
+else {
+            videoElement.height = window.innerHeight;
+            canvasElement.height = window.innerHeight;
+}
 
 function tick() {
   var time = Date.now();
@@ -100,8 +112,6 @@ pose.onResults(onResults);
 const camera = new Camera(videoElement, {
     onFrame: async () => {
       await pose.send({image: videoElement});
-    },
-    width: window.innerWidth,
-    height: window.innerHeight
+    }
   });
 camera.start();
