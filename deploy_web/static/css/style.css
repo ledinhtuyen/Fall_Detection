@@ -19,13 +19,13 @@ body {
   overflow: hidden;
 }
 .container {
-  position: absolute;
+  position: fixed;
   background-color: #596e73;
   width: 100%;
   max-height: 100%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  top: 50%; /* Di chuyển đến giữa chiều cao của màn hình */
+  left: 50%; /* Di chuyển đến giữa chiều rộng của màn hình */
+  transform: translate(-50%, -50%);
 }
 .input_video {
   display: none;
