@@ -23,6 +23,9 @@ body {
   background-color: #596e73;
   width: 100%;
   max-height: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .input_video {
   display: none;
