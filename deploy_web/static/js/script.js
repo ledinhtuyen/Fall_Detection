@@ -35,6 +35,11 @@ else {
             canvasElement.height = window.innerHeight;
 }
 
+const constraints = {
+    video: { facingMode: "user" } // Sử dụng camera trước
+};
+navigator.mediaDevices.getUserMedia(constraints);
+
 function tick() {
   var time = Date.now();
   frame++;
